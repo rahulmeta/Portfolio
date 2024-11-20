@@ -1,0 +1,288 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  background-color: rgb(255, 250, 240);
+}
+
+
+.logo,
+.menuLogo {
+  position: absolute;
+  top: 2em;
+  left: 2em;
+}
+
+.logo a,
+.menuLogo a {
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.logo a {
+  color: rgb(0, 0, 0);
+}
+
+.menuLogo a {
+  color: rgb(173, 173, 173);
+}
+
+.menuToggle {
+  position: fixed;
+  top: 2em;
+  right: 2em;
+  width: 100px;
+  height: 40px;
+  background-color: black;
+  border-radius: 8em;
+  transition: width 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+  transform-origin: right;
+  cursor: pointer;
+  z-index: 11;
+}
+
+.menuToggle.opened {
+  width: 60px;
+}
+
+.menuCopy {
+  position: absolute;
+  top: 50%;
+  left: 20px;
+  transform: translateY(-50%);
+  color: white;
+  transition: left 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+  z-index: 1;
+}
+
+.menuCopy p {
+  text-transform: uppercase;
+  font-weight: 500;
+  font-size: 12px;
+  margin: 0;
+  padding: 0;
+}
+
+.menuToggle:hover .menuCopy {
+  left: 10px;
+}
+
+.menuToggle.opened .menuCopy {
+  opacity: 0;
+}
+
+.menuIcon {
+  position: absolute;
+  right: -7%;
+  height: 60px;
+  width: 60px;
+  transform: translateY(-17%);
+  border-radius: 100%;
+  clip-path: circle(10% at 50% 50%);
+  background-color: rgb(255, 250, 240);
+  transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+  z-index: 10;
+  overflow: hidden;
+}
+
+.menuToggle:hover .menuIcon {
+  clip-path: circle(27% at 50% 50%);
+}
+
+.menuToggle.opened .menuIcon {
+  clip-path: circle(50% at 50% 50%);
+  scale: 1.2;
+}
+
+.hamburger {
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+  opacity: 0;
+}
+
+.menuToggle:hover .hamburger,
+.menuToggle.opened .hamburger {
+  top: 50%;
+  opacity: 1;
+}
+
+.menuBar {
+  position: absolute;
+  width: 15px;
+  height: 1.5px;
+  background-color: black;
+  transition-property: transform;
+  transition: all 250ms ease-out;
+}
+
+.menuBar[data-position="top"] {
+  transform: translateY(-3px);
+}
+
+.menuBar[data-position="bottom"] {
+  transform: translateY(3px);
+}
+
+.menuToggle.opened .menuBar[data-position="top"] {
+  transform: translateY(0) rotate(45deg) scaleX(1.05);
+}
+
+.menuToggle.opened .menuBar[data-position="bottom"] {
+  transform: translateY(0) rotate(-45deg) scaleX(1.05);
+}
+
+.menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  background-color: black;
+  display: flex;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+  clip-path: polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%);
+  z-index: 10;
+}
+
+.column1 {
+  flex: 1;
+}
+
+.column2 {
+  flex: 2;
+}
+
+.column {
+  position: relative;
+  height: 100%;
+  padding: 10em 2em 2em 2em;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.link {
+  position: relative;
+  transform: translateY(30px);
+  opacity: 0;
+}
+
+.link a {
+  text-decoration: none;
+  color: white;
+  font-size: 30px;
+  font-weight: 300;
+  letter-spacing: -0.5px;
+  line-height: 125%;
+}
+
+.socials {
+  width: 50%;
+  display: flex;
+  gap: 2em;
+}
+
+.socials .subCol {
+  flex: 1;
+}
+
+.socials .subCol p {
+  position: relative;
+  color: white;
+  transform: translateY(30px);
+  opacity: 0;
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.header h1 {
+  border-top: 0.05vw solid white;
+  color: white;
+  text-transform: uppercase;
+  font-size: 270px;
+  width: 100vw;
+  font-weight: 300;
+  line-height: 100%;
+  letter-spacing: -1.5vw;
+  height: 200px;
+  display: flex;
+  align-items: center;
+}
+
+.header h1 span {
+  position: relative;
+  display: inline-block;
+  transform: scale(0.75) translateY(250px) rotateY(90deg);
+  transform-origin: bottom;
+}
+
+@media (max-width:900px) {
+  .column1 {
+    flex: 2;
+    align-items: flex-start;
+  }
+
+  .link a {
+    font-size: 30px;
+  }
+
+  .socials {
+    width: 100%;
+    flex-direction: column;
+    gap: 8em;
+  }
+
+  .header h1 {
+    font-size: 70px;
+    height: 120px;
+    letter-spacing: -0.7vw;
+    width: 100vw;
+  }
+}
+
+@media (max-width:480px) {
+  .page-1 {
+    height: 50vh;
+  }
+
+  .heroSection {
+    margin-top: 15vw;
+  }
+
+  .marqueeText h1 {
+    font-size: 24.7vw;
+  }
+  .bottomText{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 2vw;
+    line-height: 3vw;
+  }
+}
